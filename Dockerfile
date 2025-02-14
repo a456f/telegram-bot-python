@@ -2,7 +2,7 @@ FROM python:3.11.6-slim
 
 WORKDIR /app
 
-# Copiar solo los archivos de dependencias para aprovechar la caché
+# Copiar solo los archivos de dependencias para aprovechar la caché de Docker
 COPY pyproject.toml poetry.lock /app/
 
 # Instalar Poetry sin usar caché
