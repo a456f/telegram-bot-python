@@ -3,8 +3,14 @@ FROM python:3.11.6-slim
 WORKDIR /app
 COPY . /app
 
-RUN pip install poetry
-RUN poetry config virtualenvs.create false
-RUN poetry install --no-dev
+# Instalar Poetry y verificar la versión
+RUN pip install poetry && poetry --version
 
+# Configurar Poetry para evitar la creación de entornos virtuales
+RUN poetry config virtualenvs.create false
+
+# Instalar solo las dependencias principales (sin dev)
+RUN poetry install --only main --no-interaction --no-ansi
+
+# Ejecutar el script principal
 CMD ["poetry", "run", "python", "main.py"]
